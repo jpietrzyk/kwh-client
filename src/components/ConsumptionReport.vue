@@ -51,7 +51,7 @@
             {
               label: 'Electricity consumption costs',
               backgroundColor: 'transparent',
-              data: e.data.map(data => data.price)
+              data: e.data.map(data => data.consumption_cost)
             }
           ]
         }
