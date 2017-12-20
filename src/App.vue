@@ -26,10 +26,10 @@
     </v-navigation-drawer>
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Electricity consumprion</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
+      <v-container fluid>
         <v-layout
           justify-center
           align-center
@@ -39,7 +39,7 @@
       </v-container>
     </v-content>
     <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2017</span>
+      <span class="white--text">&copy; 2017 jpietrzyk</span>
     </v-footer>
   </v-app>
 </template>

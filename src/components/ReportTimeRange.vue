@@ -1,101 +1,112 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs11 sm5>
-      <v-dialog
-        persistent
-        v-model="startDateMenu"
-        lazy
-        full-width
-        width="290px"
-      >
-        <v-text-field
-          slot="activator"
-          label="Start date"
-          v-model="startDateFormatted"
-          @input="$v.startDateFormatted.$touch()"
-          :error-messages="startDateErrors"
-          prepend-icon="event"
-          readonly required
-        ></v-text-field>
-        <v-date-picker
-          v-model="startDate"
-          @input="startDateFormatted = formatDate($event)"
-          scrollable actions
-          :allowed-dates="startAllowedDates"
-        >
-          <template slot-scope="{ save, cancel }">
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-              <v-btn flat color="primary" @click="save">OK</v-btn>
-            </v-card-actions>
-          </template>
-        </v-date-picker>
-      </v-dialog>
-    </v-flex>
-    <v-spacer></v-spacer>
-    <v-flex xs11 sm5>
-      <v-dialog
-        persistent
-        lazy
-        v-model="endDateMenu"
-        full-width
-        width="290px"
-      >
-        <v-text-field
-          slot="activator"
-          label="End date"
-          v-model="endDateFormatted"
-          @input="$v.endDateFormatted.$touch()"
-          :error-messages="endDateErrors"
-          prepend-icon="event"
-          readonly required
-        ></v-text-field>
-        <v-date-picker
-          v-model="endDate"
-          @input="endDateFormatted = formatDate($event)"
-          scrollable actions
-          :allowed-dates="endAllowedDates"
-        >
-          <template slot-scope="{ save, cancel }">
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-              <v-btn flat color="primary" @click="save">OK</v-btn>
-            </v-card-actions>
-          </template>
-        </v-date-picker>
-      </v-dialog>
-    </v-flex>
-    <v-flex xs11 sm5>
-      <v-select
-        label="Group by"
-        v-model="groupBy"
-        prepend-icon="event"
-        :items="groupByOptions"
-        required
-      ></v-select>
-    </v-flex>
-    <v-spacer></v-spacer>
-    <v-flex xs11 sm5>
-      <v-text-field
-      label="KwH Price"
-      v-model="price"
-      prepend-icon="event"
-      :error-messages="priceErrors"
-      @input="$v.price.$touch()"
-      @blur="$v.price.$touch()"
-      required
-    ></v-text-field>
-    </v-flex>
-    <v-flex xs11 sm5>
-      <div>
-        <v-btn
-          color="primary"
-          @click="getData">Get data</v-btn>
-      </div>
-    </v-flex>
+    <v-flex d-flex xs12 sm8 md-6 offset-sm2>
+      <v-card>
+        <v-toolbar color="pink">
 
+          <v-toolbar-title class="white--text">Choose time range and price</v-toolbar-title>
+        </v-toolbar>
+        <v-container fluid grid-list-sm>
+          <v-layout row wrap>
+            <v-flex d-flex xs12 sm6>
+              <v-dialog
+                persistent
+                v-model="startDateMenu"
+                lazy
+                full-width
+                width="290px"
+              >
+                <v-text-field
+                  slot="activator"
+                  label="Start date"
+                  v-model="startDateFormatted"
+                  @input="$v.startDateFormatted.$touch()"
+                  :error-messages="startDateErrors"
+                  prepend-icon="event"
+                  readonly required
+                ></v-text-field>
+                <v-date-picker
+                  v-model="startDate"
+                  @input="startDateFormatted = formatDate($event)"
+                  scrollable actions
+                  :allowed-dates="startAllowedDates"
+                >
+                  <template slot-scope="{ save, cancel }">
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
+                      <v-btn flat color="primary" @click="save">OK</v-btn>
+                    </v-card-actions>
+                  </template>
+                </v-date-picker>
+              </v-dialog>
+            </v-flex>
+            <v-flex d-flex xs12 sm6>
+              <v-dialog
+                persistent
+                lazy
+                v-model="endDateMenu"
+                full-width
+                width="290px"
+              >
+                <v-text-field
+                  slot="activator"
+                  label="End date"
+                  v-model="endDateFormatted"
+                  @input="$v.endDateFormatted.$touch()"
+                  :error-messages="endDateErrors"
+                  prepend-icon="event"
+                  readonly required
+                ></v-text-field>
+                <v-date-picker
+                  v-model="endDate"
+                  @input="endDateFormatted = formatDate($event)"
+                  scrollable actions
+                  :allowed-dates="endAllowedDates"
+                >
+                  <template slot-scope="{ save, cancel }">
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
+                      <v-btn flat color="primary" @click="save">OK</v-btn>
+                    </v-card-actions>
+                  </template>
+                </v-date-picker>
+              </v-dialog>
+            </v-flex>
+          </v-layout>
+          <v-layout row wrap>
+            <v-flex xs12 sm6>
+              <v-select
+                label="Group by"
+                v-model="groupBy"
+                prepend-icon="reorder"
+                :items="groupByOptions"
+                required
+              ></v-select>
+            </v-flex>
+            <v-flex xs6 sm4>
+              <v-text-field
+              label="KwH Price"
+              v-model="price"
+              prepend-icon="payment"
+              :error-messages="priceErrors"
+              @input="$v.price.$touch()"
+              @blur="$v.price.$touch()"
+              required
+            ></v-text-field>
+            </v-flex>
+            <v-flex xs6 sm2>
+              <div>
+                <v-btn
+                  color="primary"
+                  @click="getData">Get data</v-btn>
+              </div>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
   </v-layout>
 </template>
 
