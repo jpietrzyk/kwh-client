@@ -1,11 +1,10 @@
 <template>
   <v-layout row wrap>
-    <v-flex d-flex xs12 sm8 md-6 offset-sm2>
+    <v-flex d-flex xs12>
       <v-card>
-        <v-toolbar color="pink">
-
-          <v-toolbar-title class="white--text">Choose time range and price</v-toolbar-title>
-        </v-toolbar>
+        <v-card-title primary-title>
+          <h3 class="headline mb-0">Choose time range and price</h3>
+        </v-card-title>
         <v-container fluid grid-list-sm>
           <v-layout row wrap>
             <v-flex d-flex xs12 sm6>
@@ -188,30 +187,37 @@
         if (this.$v.$error) {
           return
         }
-
         axios.get('http://localhost:3000/electricity_consumption', {
           params: {
             start_date: this.startDateFormatted,
-            end_date: this.endDateFormatted
+            end_date: this.endDateFormatted,
+            group_by: this.groupBy,
+            price: this.price
           }
         })
         .then(response => {
-          console.log(response)
+          this.$emit('consumption-data-fetched', {
+            data: response.data,
+            start: this.startDateFormatted,
+            end: this.endDateFormatted,
+            price: this.price,
+            group: this.groupBy
+          })
         })
         .catch(err => {
-          console.log(err)
+          this.$emit('consumption-data-fetch-error', err)
         })
       }
     },
     mounted () {
       const maxDate = new Date()
       const minDate = new Date()
+      maxDate.setDate(maxDate.getDate() - 1)
       minDate.setFullYear(maxDate.getFullYear() - 2)
       this.startAllowedDates.min = minDate.toISOString().substr(0, 10)
       this.startAllowedDates.max = maxDate.toISOString().substr(0, 10)
-      this.endAllowedDates.max = maxDate.toISOString().substr(0, 10)
-
-      this.allowedDates = this.everyOtherDay
+      this.endAllowedDates.min = this.startAllowedDates.min
+      this.endAllowedDates.max = this.startAllowedDates.max
     }
   }
 </script>
