@@ -1,15 +1,15 @@
 import { shallow } from 'vue-test-utils'
-import ConsumptionReport from '@/components/ConsumptionReport'
+import ReportTimeRange from '@/components/ReportTimeRange'
 
-describe('ConsumptionReport.vue', () => {
+describe('ReportTimeRange.vue', () => {
   let cmp
 
   beforeEach(() => {
-    cmp = shallow(ConsumptionReport)
+    cmp = shallow(ReportTimeRange)
   })
 
-  it('is a ConsumptionReport component', () => {
-    expect(cmp.is(ConsumptionReport)).toBe(true)
+  it('is a ReportTimeRange component', () => {
+    expect(cmp.is(ReportTimeRange)).toBe(true)
   })
 
   it('Both is vue instance', () => {

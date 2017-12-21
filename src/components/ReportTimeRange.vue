@@ -115,6 +115,7 @@
   import axios from 'axios'
 
   export default {
+    name: 'report-time-range',
     mixins: [validationMixin],
     validations: {
       price: { required },

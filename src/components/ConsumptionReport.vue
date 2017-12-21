@@ -38,6 +38,7 @@
   import LineChart from '@/components/LineChart'
 
   export default {
+    name: 'consumption-report',
     components: {
       'time-range': ReportTimeRange,
       'line-chart': LineChart
