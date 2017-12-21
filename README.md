@@ -1,6 +1,16 @@
-# client
+# Energy consumption client
 
-> client for energy consumprion reports api
+> Client for energy consumprion reports api
+
+API Server is here:  https://github.com/jpietrzyk/kwh-api
+
+It assumes you have got running api server on `localhost:3000` . If not, change your server address in `src/components/ReportTimeRange.vue` on line `190`.  
+
+### ToDo
+
+- [ ] Add tests
+- [ ] Use router and reports history
+- [ ] Add loading state when fetching data
 
 ## Build Setup
 
