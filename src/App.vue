@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="electricityConsumption">
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-title>Electricity consumption</v-toolbar-title>
     </v-toolbar>
