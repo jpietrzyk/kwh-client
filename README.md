@@ -1,6 +1,6 @@
 # Energy consumption client
 
-> Client for energy consumprion reports api
+Client for energy consumprion reports api
 
 API Server is here:  https://github.com/jpietrzyk/kwh-api
 
@@ -8,7 +8,7 @@ It assumes you have got running api server on `localhost:3000` . If not, change 
 
 ### ToDo
 
-- [ ] Add tests
+- [x] Add tests
 - [ ] Use router and reports history
 - [ ] Add loading state when fetching data
 
